@@ -6,59 +6,43 @@ function getZerosCount(number, base) {
   let j = 0;
   let i = 2;
   let a = [];
-
-  do
-  {
-   if (arr % i == 0) 
-   {
-    a[j] = i;
-    j++;
-    arr = arr / i;
-   }
-   else
-   {
-    i++;
-   }
-  }
-  while (i < arr);
-  if (a.length == 1 && base==2)
-  {
-    j--;
-  }
-  a[j] = i;
   
+  getarray(a,i,j,arr,base);
   for ( let k = a.length - 2; k >=0; k--)
   {
     if( a[a.length - 1] == a[k])
     counter++;
   }
-  
+  let zc = getsol(counter,number,sim);
+  return zc;
 
 
-
-  if (counter == 1)
+  function getsol(counter,number,sim)
   {
-    let zap = knowzap(sim);
-    let zc = 0;
-    while ( number >= zap)
+    if (counter == 1)
     {
-      zc += Math.floor(number / zap);
-      number = Math.floor(number / zap);
+      let zap = knowzap(sim);
+      let zc = 0;
+      while ( number >= zap)
+      {
+        zc += Math.floor(number / zap);
+        number = Math.floor(number / zap);
+      }
+      return zc;
     }
-    return zc;
+    else
+    {
+      let zap = knowzap(sim);
+      let zc = 0;
+      while ( number >= zap)
+      {
+        zc += Math.floor(number / zap);
+        number = Math.floor(number / zap);
+      }
+      zc = Math.floor(zc / counter);
+      return zc;
+    }
   }
-  else
-  {
-    let zap = knowzap(sim);
-    let zc = 0;
-    while ( number >= zap)
-    {
-      zc += Math.floor(number / zap);
-      number = Math.floor(number / zap);
-    }
-    zc = Math.floor(zc / counter);
-    return zc;
-    }
   function knowzap(sim)
   {
     while( sim % 2 == 0 && sim / 2 > 1)
@@ -88,6 +72,26 @@ function getZerosCount(number, base) {
     simple = sim;
     return simple;
   }
+  function getarray(a,i,j,arr,base)
+  {
+    do
+    {
+    if (arr % i == 0) 
+    {
+      a[j] = i;
+      j++;
+      arr = arr / i;
+    }
+    else
+    {
+      i++;
+    }
+    }
+    while (i < arr);
+    if (a.length == 1 && base==2)
+    {
+      j--;
+    }
+    a[j] = i;
+  }
 }
-
-//getZerosCount(16, 16);
