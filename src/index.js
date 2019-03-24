@@ -3,7 +3,7 @@ function getZerosCount(number, base) {
   let sim = base;
   let arr = base;
   let counter = 1;
-  let j = 1;
+  let j = 0;
   let i = 2;
   let a = [];
 
@@ -21,16 +21,18 @@ function getZerosCount(number, base) {
    }
   }
   while (i < arr);
-  a[j] = i;
-
-  if (a[a.length - 1]== a[a.length - 2])
+  if (a.length == 1 && base==2)
   {
-    counter++;
-    if (a[a.length - 2] == a[a.length - 3])
-    {
-      counter++;
-    }
+    j--;
   }
+  a[j] = i;
+  
+  for ( let k = a.length - 2; k >=0; k--)
+  {
+    if( a[a.length - 1] == a[k])
+    counter++;
+  }
+  
 
 
 
@@ -54,8 +56,7 @@ function getZerosCount(number, base) {
       zc += Math.floor(number / zap);
       number = Math.floor(number / zap);
     }
-    zc = zc - 1;
-    zc = zc / counter;
+    zc = Math.floor(zc / counter);
     return zc;
     }
   function knowzap(sim)
@@ -89,4 +90,4 @@ function getZerosCount(number, base) {
   }
 }
 
-//getZerosCount(60559525, 147);
+//getZerosCount(16, 16);
