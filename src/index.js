@@ -1,7 +1,65 @@
 module.exports = 
 function getZerosCount(number, base) {
   let sim = base;
-  function knowzap(sim){
+  let arr = base;
+  let counter = 1;
+  let j = 1;
+  let i = 2;
+  let a = [];
+
+  do
+  {
+   if (arr % i == 0) 
+   {
+    a[j] = i;
+    j++;
+    arr = arr / i;
+   }
+   else
+   {
+    i++;
+   }
+  }
+  while (i < arr);
+  a[j] = i;
+
+  if (a[a.length - 1]== a[a.length - 2])
+  {
+    counter++;
+    if (a[a.length - 2] == a[a.length - 3])
+    {
+      counter++;
+    }
+  }
+
+
+
+  if (counter == 1)
+  {
+    let zap = knowzap(sim);
+    let zc = 0;
+    while ( number >= zap)
+    {
+      zc += Math.floor(number / zap);
+      number = Math.floor(number / zap);
+    }
+    return zc;
+  }
+  else
+  {
+    let zap = knowzap(sim);
+    let zc = 0;
+    while ( number >= zap)
+    {
+      zc += Math.floor(number / zap);
+      number = Math.floor(number / zap);
+    }
+    zc = zc - 1;
+    zc = zc / counter;
+    return zc;
+    }
+  function knowzap(sim)
+  {
     while( sim % 2 == 0 && sim / 2 > 1)
     {
       sim = sim /2;
@@ -26,39 +84,9 @@ function getZerosCount(number, base) {
     {
       sim = sim /13;
     }
-    while( sim % 17 == 0 && sim / 17 > 1)
-    {
-      sim = sim /17;
-    }
-    while( sim % 19 == 0 && sim / 19 > 1)
-    {
-      sim = sim /19;
-    }
-    while( sim % 23 == 0 && sim / 23 > 1)
-    {
-      sim = sim /23;
-    }
-    while( sim % 29 == 0 && sim / 29 > 1)
-    {
-      sim = sim /29;
-    }
     simple = sim;
-    
     return simple;
   }
-
-  let zap = knowzap(sim);
-  let zc = 0;
-  while ( number >= zap)
-  {
-    zc += Math.floor(number / zap);
-    number = Math.floor(number / zap);
-  }
-  return zc;
-
-
-
-
 }
 
 //getZerosCount(60559525, 147);
